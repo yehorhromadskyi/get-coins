@@ -109,10 +109,16 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Icons.imageset\Contents.json">
+    <ImageAsset Include="Assets.xcassets\Rover.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Icons.imageset\rover.png">
+    <ImageAsset Include="Assets.xcassets\Rover.imageset\rover.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Rover.imageset\rover@2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Rover.imageset\rover@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>

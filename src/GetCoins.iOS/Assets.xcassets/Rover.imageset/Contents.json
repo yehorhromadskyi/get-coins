@@ -7,11 +7,13 @@
     },
     {
       "scale": "2x",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "filename": "rover@2x.png"
     },
     {
       "scale": "3x",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "filename": "rover@3x.png"
     },
     {
       "idiom": "iphone"
