@@ -14,5 +14,8 @@ namespace GetCoins.iOS
     [Register ("ViewController")]
     partial class ViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>GetCoins.iOS</string>
+	<string>GetCoins</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.GetCoins</string>
 	<key>CFBundleShortVersionString</key>
