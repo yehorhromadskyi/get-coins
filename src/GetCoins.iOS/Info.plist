@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>GetSkipass.iOS</string>
+	<string>GetCoins.iOS</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.GetSkipass</string>
+	<string>com.companyname.GetCoins</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

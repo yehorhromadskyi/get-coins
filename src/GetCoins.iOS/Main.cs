@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace GetSkipass.iOS
+namespace GetCoins.iOS
 {
 	public class Application
 	{

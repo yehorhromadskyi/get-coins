@@ -2,7 +2,7 @@
 using System;
 using UIKit;
 
-namespace GetSkipass.iOS
+namespace GetCoins.iOS
 {
     public partial class ViewController : UIViewController
     {

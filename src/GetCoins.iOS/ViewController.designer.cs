@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace GetSkipass.iOS
+namespace GetCoins.iOS
 {
     [Register ("ViewController")]
     partial class ViewController
