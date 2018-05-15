@@ -6,6 +6,7 @@ using UIKit;
 using Foundation;
 using System.Collections.Generic;
 using GetCoins.iOS.Models;
+using GetCoins.iOS.Cells;
 
 namespace GetCoins.iOS.ViewControllers
 {
@@ -46,8 +47,6 @@ namespace GetCoins.iOS.ViewControllers
     {
         readonly List<Rover> _rovers = new List<Rover>();
 
-       const string CellIdentifier = "RoverCell";
-
         public RoversTableSource(List<Rover> rovers)
         {
             _rovers = rovers;
@@ -55,18 +54,17 @@ namespace GetCoins.iOS.ViewControllers
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell(CellIdentifier);
+			var cell = (RoverCell)tableView.DequeueReusableCell(RoverCell.Key);
             var rover = _rovers[indexPath.Row];
 
             if (cell == null)
             {
-                cell = new UITableViewCell(UITableViewCellStyle.Subtitle, CellIdentifier);
+				cell = new RoverCell();            
             }
 
-            cell.TextLabel.Text = rover.Name;
-            cell.DetailTextLabel.Text = rover.Status;
+			cell.UpdateCell(rover);         
 
-            return cell;
+			return cell;
         }
 
         public override nint RowsInSection(UITableView tableview, nint section) => _rovers.Count;
