@@ -6,12 +6,10 @@ using UIKit;
 using Foundation;
 using System.Collections.Generic;
 using GetCoins.iOS.Models;
-using GetCoins.iOS.Cells;
 
 namespace GetCoins.iOS.ViewControllers
 {
-    [Register("RoversViewController")]
-    public class RoversViewController : UITableViewController
+    public partial class RoversViewController : UIViewController
     {
         public RoversViewController(IntPtr handle)
             : base (handle)
@@ -37,9 +35,15 @@ namespace GetCoins.iOS.ViewControllers
                 new Rover { Name = "Spirit", Status = "Complete" }
             };
 
-            TableView.Source = new RoversTableSource(rovers);
+            roversTableView.Source = new RoversTableSource(rovers);
 
             // Perform any additional setup after loading the view
+        }
+
+        [Action("UnwindToRoversViewController:")]
+        public void UnwindToRoversViewController(UIStoryboardSegue segue)
+        {
+           Console.WriteLine("Unwind");
         }
     }
 
@@ -54,15 +58,16 @@ namespace GetCoins.iOS.ViewControllers
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-			var cell = (RoverCell)tableView.DequeueReusableCell(RoverCell.Key);
+			var cell = tableView.DequeueReusableCell("RoverCell");
             var rover = _rovers[indexPath.Row];
 
             if (cell == null)
             {
-				cell = new RoverCell();            
+                cell = new UITableViewCell(UITableViewCellStyle.Subtitle, "RoverCell");            
             }
 
-			cell.UpdateCell(rover);         
+            cell.TextLabel.Text = rover.Name;
+            cell.DetailTextLabel.Text = rover.Status;
 
 			return cell;
         }

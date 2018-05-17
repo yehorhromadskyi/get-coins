@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -145,10 +145,13 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\RoversViewController.cs" />
-    <Compile Include="Cells\RoverCell.cs" />
-    <Compile Include="Cells\RoverCell.designer.cs">
-      <DependentUpon>RoverCell.cs</DependentUpon>
+    <Compile Include="ViewControllers\RoverDetailsViewController.cs" />
+    <Compile Include="ViewControllers\RoverDetailsViewController.designer.cs">
+      <DependentUpon>RoverDetailsViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewControllers\RoversViewController.designer.cs">
+	<DependentUpon>RoversViewController.cs</DependentUpon>
+</Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

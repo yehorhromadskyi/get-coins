@@ -7,22 +7,15 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace GetCoins.iOS.ViewControllers
 {
-    [Register ("RoversViewController")]
-    partial class RoversViewController
+    [Register ("RoverDetailsViewController")]
+    partial class RoverDetailsViewController
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView roversTableView { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
-            if (roversTableView != null) {
-                roversTableView.Dispose ();
-                roversTableView = null;
-            }
         }
     }
 }
