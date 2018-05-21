@@ -11,7 +11,7 @@ namespace GetCoins.Backend.Controllers
         // GET api/values
         public string Get()
         {
-            return "Hello World!";
+            return "Hello from VM!";
         }
 
         // POST api/values
