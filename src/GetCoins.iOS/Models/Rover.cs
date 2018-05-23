@@ -1,17 +1,35 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace GetCoins.iOS.Models
 {
     public class Rover
     {
-        public long Id { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("landing_date")]
         public DateTimeOffset LandingDate { get; set; }
+
+        [JsonProperty("launch_date")]
         public DateTimeOffset LaunchDate { get; set; }
+
+        [JsonProperty("status")]
         public string Status { get; set; }
-        public long MaxSol { get; set; }
+
+        [JsonProperty("max_sol")]
+        public int MaxSol { get; set; }
+
+        [JsonProperty("max_date")]
         public DateTimeOffset MaxDate { get; set; }
-        public long TotalPhotos { get; set; }
+
+        [JsonProperty("total_photos")]
+        public int TotalPhotos { get; set; }
+
+        [JsonProperty("cameras")]
         public Camera[] Cameras { get; set; }
     }
 }
