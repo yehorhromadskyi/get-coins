@@ -6,6 +6,7 @@ using UIKit;
 using Foundation;
 using System.Collections.Generic;
 using GetCoins.iOS.Models;
+using GetCoins.iOS.Services;
 
 namespace GetCoins.iOS.ViewControllers
 {
@@ -24,20 +25,16 @@ namespace GetCoins.iOS.ViewControllers
             // Release any cached data, images, etc that aren't in use.
         }
 
-        public override void ViewDidLoad()
+        public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            var rovers = new List<Rover>
-            {
-                new Rover { Name = "Curiosity", Status = "Active" },
-                new Rover { Name = "Opportunity", Status = "Active" },
-                new Rover { Name = "Spirit", Status = "Complete" }
-            };
+            var apiService = new NasaApiService();
+
+            var rovers = await apiService.GetRoversAsync();
 
             roversTableView.Source = new RoversTableSource(rovers);
-
-            // Perform any additional setup after loading the view
+            roversTableView.ReloadData();
         }
 
         [Action("UnwindToRoversViewController:")]
