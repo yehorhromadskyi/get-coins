@@ -14,8 +14,16 @@ namespace GetCoins.iOS.ViewControllers
     [Register ("RoverDetailsViewController")]
     partial class RoverDetailsViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView camerasTableView { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (camerasTableView != null) {
+                camerasTableView.Dispose ();
+                camerasTableView = null;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace GetCoins.iOS.Models
 {
@@ -30,6 +31,6 @@ namespace GetCoins.iOS.Models
         public int TotalPhotos { get; set; }
 
         [JsonProperty("cameras")]
-        public Camera[] Cameras { get; set; }
+        public List<Camera> Cameras { get; set; }
     }
 }

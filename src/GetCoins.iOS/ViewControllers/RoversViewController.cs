@@ -12,6 +12,8 @@ namespace GetCoins.iOS.ViewControllers
 {
     public partial class RoversViewController : UIViewController
     {
+        RoversTableSource _roversTableSource;
+
         public RoversViewController(IntPtr handle)
             : base (handle)
         {
@@ -33,7 +35,9 @@ namespace GetCoins.iOS.ViewControllers
 
             var rovers = await apiService.GetRoversAsync();
 
-            roversTableView.Source = new RoversTableSource(rovers);
+            _roversTableSource = new RoversTableSource(rovers);
+
+            roversTableView.Source = _roversTableSource;
             roversTableView.ReloadData();
         }
 
@@ -42,11 +46,26 @@ namespace GetCoins.iOS.ViewControllers
         {
            Console.WriteLine("Unwind");
         }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+
+            if (segue.DestinationViewController is RoverDetailsViewController detailsViewController)
+            {
+                var selectedIndex = roversTableView.IndexPathForSelectedRow.Row;
+                var selectedRover = _roversTableSource.Rovers[selectedIndex];
+                detailsViewController.SetRover(selectedRover);
+                detailsViewController.NavigationItem.Title = selectedRover.Name;
+            }
+        }
     }
 
     public class RoversTableSource : UITableViewSource
     {
         readonly List<Rover> _rovers = new List<Rover>();
+
+        public List<Rover> Rovers => _rovers;
 
         public RoversTableSource(List<Rover> rovers)
         {
