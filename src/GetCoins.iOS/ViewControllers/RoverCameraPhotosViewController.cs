@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Foundation;
@@ -83,7 +84,12 @@ namespace GetCoins.iOS.ViewControllers
 
                 InvokeOnMainThread(() =>
                 {
-                    cell.PhotoImageView.Image = image;
+                    var isVisible = tableView.IndexPathsForVisibleRows
+                                             .Contains(indexPath);
+                    if (isVisible)
+                    {
+                        cell.PhotoImageView.Image = image;
+                    }
                 });
             });
 
