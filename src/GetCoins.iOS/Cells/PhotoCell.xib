@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="250" height="249"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QLH-hX-KDI">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QLH-hX-KDI" image="Placeholder">
                         <rect key="frame" x="0.0" y="-0.5" width="250" height="250.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="250" id="DjB-pf-VUq"/>
@@ -39,4 +39,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Placeholder" width="512" height="512"/>
+    </resources>
 </document>
