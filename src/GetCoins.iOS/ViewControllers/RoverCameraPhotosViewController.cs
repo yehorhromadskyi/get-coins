@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Foundation;
 using GetCoins.iOS.Cells;
 using GetCoins.iOS.Models;
@@ -72,12 +73,19 @@ namespace GetCoins.iOS.ViewControllers
                 cell = PhotoCell.Create();
             }
 
-            using (var url = new NSUrl(photo.Image))
-            using (var data = NSData.FromUrl(url))
-                cell.PhotoImageView.Image = UIImage.LoadFromData(data);
+            Task.Run(async () =>
+            {
+                //using (var url = new NSUrl(photo.Image))
+                //using (var data = NSData.FromUrl(url))
 
-            //cell.TextLabel.Text = photo.Image;
-            //cell.ImageView.Image = UIImage.fro;
+                var imageBytes = await HttpService.Client.GetByteArrayAsync(photo.Image);
+                var image = UIImage.LoadFromData(NSData.FromArray(imageBytes));
+
+                InvokeOnMainThread(() =>
+                {
+                    cell.PhotoImageView.Image = image;
+                });
+            });
 
             return cell;
         }
