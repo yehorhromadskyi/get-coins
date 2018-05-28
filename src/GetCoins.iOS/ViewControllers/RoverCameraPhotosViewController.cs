@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Foundation;
+using GetCoins.iOS.Cells;
 using GetCoins.iOS.Models;
 using GetCoins.iOS.Services;
 using UIKit;
@@ -64,15 +65,19 @@ namespace GetCoins.iOS.ViewControllers
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell("RoverPhotoCell");
+            var cell = tableView.DequeueReusableCell(PhotoCell.Key) as PhotoCell;
             var photo = _photos[indexPath.Row];
 
             if (cell == null)
             {
-                cell = new UITableViewCell(UITableViewCellStyle.Default, "RoverPhotoCell");
+                cell = PhotoCell.Create();
             }
 
-            cell.TextLabel.Text = photo.Image;
+            using (var url = new NSUrl(photo.Image))
+            using (var data = NSData.FromUrl(url))
+                cell.PhotoImageView.Image = UIImage.LoadFromData(data);
+
+            //cell.TextLabel.Text = photo.Image;
             //cell.ImageView.Image = UIImage.fro;
 
             return cell;

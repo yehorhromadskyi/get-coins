@@ -132,6 +132,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Cells\PhotoCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -165,6 +166,10 @@
     </Compile>
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\PhotosResponse.cs" />
+    <Compile Include="Cells\PhotoCell.cs" />
+    <Compile Include="Cells\PhotoCell.designer.cs">
+      <DependentUpon>PhotoCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
