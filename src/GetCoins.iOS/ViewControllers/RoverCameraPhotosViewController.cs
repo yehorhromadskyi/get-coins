@@ -65,10 +65,9 @@ namespace GetCoins.iOS.ViewControllers
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell(PhotoCell.Key) as PhotoCell;
             var photo = _photos[indexPath.Row];
 
-            if (cell == null)
+            if (!(tableView.DequeueReusableCell(PhotoCell.Key) is PhotoCell cell))
             {
                 cell = PhotoCell.Create();
             }
