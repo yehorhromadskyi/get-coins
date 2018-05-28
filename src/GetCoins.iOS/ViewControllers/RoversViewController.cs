@@ -41,22 +41,22 @@ namespace GetCoins.iOS.ViewControllers
             roversTableView.ReloadData();
         }
 
-        [Action("UnwindToRoversViewController:")]
-        public void UnwindToRoversViewController(UIStoryboardSegue segue)
-        {
-           Console.WriteLine("Unwind");
-        }
+        //[Action("UnwindToRoversViewController:")]
+        //public void UnwindToRoversViewController(UIStoryboardSegue segue)
+        //{
+        //   Console.WriteLine("Unwind");
+        //}
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             base.PrepareForSegue(segue, sender);
 
-            if (segue.DestinationViewController is RoverDetailsViewController detailsViewController)
+            if (segue.DestinationViewController is RoverDetailsViewController destinationViewController)
             {
                 var selectedIndex = roversTableView.IndexPathForSelectedRow.Row;
                 var selectedRover = _roversTableSource.Rovers[selectedIndex];
-                detailsViewController.SetRover(selectedRover);
-                detailsViewController.NavigationItem.Title = selectedRover.Name;
+                destinationViewController.SetNavigationParameters(selectedRover.Name, selectedRover.Cameras);
+                destinationViewController.NavigationItem.Title = selectedRover.Name;
             }
         }
     }
