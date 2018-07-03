@@ -7,6 +7,7 @@ using GetCoins.iOS.Cells;
 using GetCoins.iOS.Models;
 using GetCoins.iOS.Services;
 using UIKit;
+using CoreGraphics;
 
 namespace GetCoins.iOS.ViewControllers
 {
@@ -32,13 +33,13 @@ namespace GetCoins.iOS.ViewControllers
 
             photosCollectionView.RegisterNibForCell(PhotoCell.Nib, PhotoCell.Key);
 
-            // Perform any additional setup after loading the view, typically from a nib.
-
             var apiService = new NasaApiService();
 
             var photos = await apiService.GetPhotosAsync(_rover, _camera);
 
             _photosSource = new PhotosDataSource(photos);
+
+            photosCollectionView.Delegate = new PhotosCollectionDelegateFlowLayout();
 
             photosCollectionView.DataSource = _photosSource;
             photosCollectionView.ReloadData();
@@ -84,12 +85,10 @@ namespace GetCoins.iOS.ViewControllers
 
                 InvokeOnMainThread(() =>
                 {
-                    var isVisible = collectionView.IndexPathsForVisibleItems
-                                                  .Contains(indexPath);
-                    if (isVisible)
-                    {
-                        cell.PhotoImageView.Image = image;
-                    }
+                    cell.PhotoImageView.Image = image;
+
+                    //var isVisible = collectionView.IndexPathsForVisibleItems
+                    //                              .Contains(indexPath);
                 });
             });
 
@@ -97,6 +96,17 @@ namespace GetCoins.iOS.ViewControllers
         }
 
         public override nint GetItemsCount(UICollectionView collectionView, nint section) => _photos.Count;
+    }
+
+    public class PhotosCollectionDelegateFlowLayout : UICollectionViewDelegateFlowLayout
+    {
+        [Export("collectionView:layout:sizeForItemAtIndexPath:")]
+        public override CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
+        {
+            var width = collectionView.Bounds.Width;
+
+            return new CGSize(width * 0.48, width * 0.48);
+        }
     }
 }
 

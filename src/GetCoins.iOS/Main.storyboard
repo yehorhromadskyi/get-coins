@@ -212,19 +212,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="isr-Vh-Lja">
-                                <rect key="frame" x="16" y="64" width="343" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6oc-ca-ncN">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8018">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <rect key="frame" x="16" y="76" width="343" height="542"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MHs-Q6-gsp">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7733">
+                                        <rect key="frame" x="0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
@@ -236,7 +236,7 @@
                         <constraints>
                             <constraint firstItem="6120" firstAttribute="top" secondItem="isr-Vh-Lja" secondAttribute="bottom" id="1JD-Z9-kZy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="isr-Vh-Lja" secondAttribute="trailing" id="2un-wh-Eso"/>
-                            <constraint firstItem="isr-Vh-Lja" firstAttribute="top" secondItem="6119" secondAttribute="bottom" id="JsK-mg-s3u"/>
+                            <constraint firstItem="isr-Vh-Lja" firstAttribute="top" secondItem="6119" secondAttribute="bottom" constant="12" id="5oP-B1-t8j"/>
                             <constraint firstItem="isr-Vh-Lja" firstAttribute="leading" secondItem="6123" secondAttribute="leadingMargin" id="YGw-Y3-W8K"/>
                         </constraints>
                     </view>
