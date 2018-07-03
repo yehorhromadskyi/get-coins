@@ -15,7 +15,7 @@ namespace GetCoins.iOS.ViewControllers
         string _rover;
         string _camera;
 
-        PhotosTableSource _photosTableSource;
+        PhotosDataSource _photosSource;
 
         public RoverCameraPhotosViewController(IntPtr handle)
             : base(handle)
@@ -29,16 +29,19 @@ namespace GetCoins.iOS.ViewControllers
         public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            photosCollectionView.RegisterNibForCell(PhotoCell.Nib, PhotoCell.Key);
+
             // Perform any additional setup after loading the view, typically from a nib.
 
             var apiService = new NasaApiService();
 
             var photos = await apiService.GetPhotosAsync(_rover, _camera);
 
-            _photosTableSource = new PhotosTableSource(photos);
+            _photosSource = new PhotosDataSource(photos);
 
-            photosTableView.Source = _photosTableSource;
-            photosTableView.ReloadData();
+            photosCollectionView.DataSource = _photosSource;
+            photosCollectionView.ReloadData();
         }
 
         public override void DidReceiveMemoryWarning()
@@ -54,25 +57,22 @@ namespace GetCoins.iOS.ViewControllers
         }
     }
 
-    public class PhotosTableSource : UITableViewSource
+    public class PhotosDataSource : UICollectionViewDataSource
     {
         readonly List<Photo> _photos = new List<Photo>();
 
         public List<Photo> Photos => _photos;
 
-        public PhotosTableSource(List<Photo> photos)
+        public PhotosDataSource(List<Photo> photos)
         {
             _photos = photos;
         }
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+        public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
             var photo = _photos[indexPath.Row];
 
-            if (!(tableView.DequeueReusableCell(PhotoCell.Key) is PhotoCell cell))
-            {
-                cell = PhotoCell.Create();
-            }
+            var cell = (PhotoCell)collectionView.DequeueReusableCell(PhotoCell.Key, indexPath);
 
             Task.Run(async () =>
             {
@@ -84,8 +84,8 @@ namespace GetCoins.iOS.ViewControllers
 
                 InvokeOnMainThread(() =>
                 {
-                    var isVisible = tableView.IndexPathsForVisibleRows
-                                             .Contains(indexPath);
+                    var isVisible = collectionView.IndexPathsForVisibleItems
+                                                  .Contains(indexPath);
                     if (isVisible)
                     {
                         cell.PhotoImageView.Image = image;
@@ -96,7 +96,7 @@ namespace GetCoins.iOS.ViewControllers
             return cell;
         }
 
-        public override nint RowsInSection(UITableView tableview, nint section) => _photos.Count;
+        public override nint GetItemsCount(UICollectionView collectionView, nint section) => _photos.Count;
     }
 }
 

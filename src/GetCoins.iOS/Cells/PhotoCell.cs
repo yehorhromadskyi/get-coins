@@ -5,7 +5,7 @@ using UIKit;
 
 namespace GetCoins.iOS.Cells
 {
-    public partial class PhotoCell : UITableViewCell
+    public partial class PhotoCell : UICollectionViewCell
     {
         public static readonly NSString Key = new NSString("PhotoCell");
         public static readonly UINib Nib;

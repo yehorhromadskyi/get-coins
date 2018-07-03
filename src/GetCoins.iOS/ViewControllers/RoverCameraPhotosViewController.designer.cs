@@ -16,13 +16,13 @@ namespace GetCoins.iOS.ViewControllers
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView photosTableView { get; set; }
+        UIKit.UICollectionView photosCollectionView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (photosTableView != null) {
-                photosTableView.Dispose ();
-                photosTableView = null;
+            if (photosCollectionView != null) {
+                photosCollectionView.Dispose ();
+                photosCollectionView = null;
             }
         }
     }

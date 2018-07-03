@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="412">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="412">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -210,21 +211,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="260" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6250">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="isr-Vh-Lja">
                                 <rect key="frame" x="16" y="64" width="343" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6oc-ca-ncN">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MHs-Q6-gsp">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6250" firstAttribute="top" secondItem="6119" secondAttribute="bottom" id="25i-UZ-nfw"/>
-                            <constraint firstItem="6250" firstAttribute="leading" secondItem="6123" secondAttribute="leadingMargin" id="5wM-o0-wDE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6250" secondAttribute="trailing" id="J1d-bI-EyD"/>
-                            <constraint firstItem="6120" firstAttribute="top" secondItem="6250" secondAttribute="bottom" id="P4s-mq-B3f"/>
+                            <constraint firstItem="6120" firstAttribute="top" secondItem="isr-Vh-Lja" secondAttribute="bottom" id="1JD-Z9-kZy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="isr-Vh-Lja" secondAttribute="trailing" id="2un-wh-Eso"/>
+                            <constraint firstItem="isr-Vh-Lja" firstAttribute="top" secondItem="6119" secondAttribute="bottom" id="JsK-mg-s3u"/>
+                            <constraint firstItem="isr-Vh-Lja" firstAttribute="leading" secondItem="6123" secondAttribute="leadingMargin" id="YGw-Y3-W8K"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="photosTableView" destination="6250" id="name-outlet-6250"/>
+                        <outlet property="photosCollectionView" destination="isr-Vh-Lja" id="name-outlet-isr-Vh-Lja"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6124" userLabel="First Responder" sceneMemberID="firstResponder"/>
