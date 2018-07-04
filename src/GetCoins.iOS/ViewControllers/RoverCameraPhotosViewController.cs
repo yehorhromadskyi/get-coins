@@ -17,6 +17,7 @@ namespace GetCoins.iOS.ViewControllers
         string _camera;
 
         PhotosDataSource _photosSource;
+        UITapGestureRecognizer _photosTapGesture;
 
         public RoverCameraPhotosViewController(IntPtr handle)
             : base(handle)
@@ -39,10 +40,46 @@ namespace GetCoins.iOS.ViewControllers
 
             _photosSource = new PhotosDataSource(photos);
 
+            _photosTapGesture = new UITapGestureRecognizer(PhotosCollectionTapped);
+
+            photosCollectionView.AddGestureRecognizer(_photosTapGesture);
+
             photosCollectionView.Delegate = new PhotosCollectionDelegateFlowLayout();
 
             photosCollectionView.DataSource = _photosSource;
             photosCollectionView.ReloadData();
+        }
+
+        void PhotosCollectionTapped()
+        {
+            var point = _photosTapGesture.LocationInView(photosCollectionView);
+            var indexPath = photosCollectionView.IndexPathForItemAtPoint(point);
+
+            if (indexPath != null)
+            {
+                var cell = (PhotoCell)photosCollectionView.CellForItem(indexPath);
+                var photo = _photosSource.Photos[indexPath.Row];
+
+                var fullImageView = new UIImageView(cell.PhotoImageView.Image);
+                fullImageView.Frame = UIScreen.MainScreen.Bounds;
+                fullImageView.BackgroundColor = UIColor.Black;
+                fullImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
+                fullImageView.UserInteractionEnabled = true;
+
+                var dismissGesture = new UITapGestureRecognizer(DismissFullImage);
+                fullImageView.AddGestureRecognizer(dismissGesture);
+
+                NavigationController.NavigationBarHidden = true;
+                TabBarController.TabBar.Hidden = true;
+                View.AddSubview(fullImageView);
+            }
+        }
+
+        private void DismissFullImage(UITapGestureRecognizer recognizer)
+        {
+            NavigationController.NavigationBarHidden = false;
+            TabBarController.TabBar.Hidden = false;
+            recognizer.View.RemoveFromSuperview();
         }
 
         public override void DidReceiveMemoryWarning()
