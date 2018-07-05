@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using CoreGraphics;
 using Foundation;
 using GetCoins.iOS.Cells;
+using GetCoins.iOS.Extensions;
 using GetCoins.iOS.Models;
 using GetCoins.iOS.Services;
 using UIKit;
-using CoreGraphics;
 
 namespace GetCoins.iOS.ViewControllers
 {
@@ -154,7 +155,8 @@ namespace GetCoins.iOS.ViewControllers
 
                 InvokeOnMainThread(() =>
                 {
-                    cell.PhotoImageView.Image = image;
+                    var maxSide = (float)Math.Max(image.Size.Width, image.Size.Height);
+                    cell.PhotoImageView.Image = image.Crop(maxSide, maxSide);
                 });
             });
 
