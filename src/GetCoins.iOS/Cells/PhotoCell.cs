@@ -26,10 +26,5 @@ namespace GetCoins.iOS.Cells
         {
             // Note: this .ctor should not contain any initialization logic.
         }
-
-        public void UpdateCell(UIImage image)
-        {
-            photoImageView.Image = image;
-        }
     }
 }

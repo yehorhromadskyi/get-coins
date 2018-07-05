@@ -1,41 +1,41 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="250" id="cxk-wN-pdQ" customClass="PhotoCell">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="163" id="cxk-wN-pdQ" customClass="PhotoCell">
+            <rect key="frame" x="0.0" y="0.0" width="169" height="163"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
-                <rect key="frame" x="0.0" y="0.0" width="250" height="249"/>
+            <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
+                <rect key="frame" x="0.0" y="0.0" width="169" height="162.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QLH-hX-KDI">
-                        <rect key="frame" x="0.0" y="-0.5" width="250" height="250.5"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="250" id="DjB-pf-VUq"/>
-                            <constraint firstAttribute="width" constant="250" id="qlu-fI-0bx"/>
-                        </constraints>
+                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QLH-hX-KDI">
+                        <rect key="frame" x="0.0" y="0.0" width="169" height="162.5"/>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="QLH-hX-KDI" firstAttribute="centerX" secondItem="YTl-1W-gDM" secondAttribute="centerX" id="7TQ-TI-AcB"/>
-                    <constraint firstItem="QLH-hX-KDI" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="jEf-04-fyI"/>
-                    <constraint firstItem="QLH-hX-KDI" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="kWL-SJ-MxI"/>
-                    <constraint firstItem="QLH-hX-KDI" firstAttribute="centerX" secondItem="YTl-1W-gDM" secondAttribute="centerX" id="nVA-NZ-3zB"/>
+                    <constraint firstItem="QLH-hX-KDI" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" id="Ye0-Wt-vaK"/>
+                    <constraint firstItem="QLH-hX-KDI" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" id="bLp-Dx-FQm"/>
+                    <constraint firstAttribute="bottom" secondItem="QLH-hX-KDI" secondAttribute="bottom" id="lP3-ZN-oQx"/>
+                    <constraint firstAttribute="trailing" secondItem="QLH-hX-KDI" secondAttribute="trailing" id="rN0-Mz-fZd"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="photoImageView" destination="QLH-hX-KDI" id="name-outlet-QLH-hX-KDI"/>
             </connections>
-            <point key="canvasLocation" x="2" y="76"/>
+            <point key="canvasLocation" x="-38.5" y="32.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Placeholder" width="512" height="512"/>
+        <image name="Placeholder" width="100" height="100"/>
     </resources>
 </document>

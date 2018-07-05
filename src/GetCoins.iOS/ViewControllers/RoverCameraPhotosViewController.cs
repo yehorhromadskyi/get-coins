@@ -60,24 +60,34 @@ namespace GetCoins.iOS.ViewControllers
                 var cell = (PhotoCell)photosCollectionView.CellForItem(indexPath);
                 var photo = _photosSource.Photos[indexPath.Row];
 
-                var fullImageView = new UIImageView(cell.PhotoImageView.Image);
-                fullImageView.Frame = UIScreen.MainScreen.Bounds;
-                fullImageView.BackgroundColor = UIColor.Black;
-                fullImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
-                fullImageView.UserInteractionEnabled = true;
+                var cellLocation = photosCollectionView.ConvertPointToView(new CGPoint(cell.Frame.X, cell.Frame.Y), View);
+
+                var fullImageView = new UIImageView(cell.PhotoImageView.Image)
+                {
+                    Frame = new CGRect(cellLocation, cell.Frame.Size),
+                    BackgroundColor = UIColor.Black,
+                    ContentMode = UIViewContentMode.ScaleAspectFit,
+                    UserInteractionEnabled = true
+                };
 
                 var dismissGesture = new UITapGestureRecognizer(DismissFullImage);
                 fullImageView.AddGestureRecognizer(dismissGesture);
 
-                NavigationController.NavigationBarHidden = true;
-                TabBarController.TabBar.Hidden = true;
                 View.AddSubview(fullImageView);
+
+                //NavigationController.NavigationBarHidden = true;
+
+                UIView.Animate(0.2, () =>
+                {
+                    fullImageView.Frame = UIScreen.MainScreen.Bounds;
+                    TabBarController.TabBar.Hidden = true;
+                });
             }
         }
 
         private void DismissFullImage(UITapGestureRecognizer recognizer)
         {
-            NavigationController.NavigationBarHidden = false;
+            //NavigationController.NavigationBarHidden = false;
             TabBarController.TabBar.Hidden = false;
             recognizer.View.RemoveFromSuperview();
         }
