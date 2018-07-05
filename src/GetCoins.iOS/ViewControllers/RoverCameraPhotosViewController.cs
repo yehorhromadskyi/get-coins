@@ -17,7 +17,6 @@ namespace GetCoins.iOS.ViewControllers
         string _camera;
 
         PhotosDataSource _photosSource;
-        UITapGestureRecognizer _photosTapGesture;
 
         public RoverCameraPhotosViewController(IntPtr handle)
             : base(handle)
@@ -40,28 +39,29 @@ namespace GetCoins.iOS.ViewControllers
 
             _photosSource = new PhotosDataSource(photos);
 
-            _photosTapGesture = new UITapGestureRecognizer(PhotosCollectionTapped);
-
-            photosCollectionView.AddGestureRecognizer(_photosTapGesture);
+            photosCollectionView.AddGestureRecognizer(new UITapGestureRecognizer(PhotosCollectionTapped));
 
             photosCollectionView.Delegate = new PhotosCollectionDelegateFlowLayout();
-
             photosCollectionView.DataSource = _photosSource;
+
             photosCollectionView.ReloadData();
         }
 
-        void PhotosCollectionTapped()
+        void PhotosCollectionTapped(UITapGestureRecognizer tapGesture)
         {
-            var point = _photosTapGesture.LocationInView(photosCollectionView);
+            var point = tapGesture.LocationInView(photosCollectionView);
             var indexPath = photosCollectionView.IndexPathForItemAtPoint(point);
 
             if (indexPath != null)
             {
                 var cell = (PhotoCell)photosCollectionView.CellForItem(indexPath);
-                var photo = _photosSource.Photos[indexPath.Row];
-
                 var cellLocation = photosCollectionView.ConvertPointToView(new CGPoint(cell.Frame.X, cell.Frame.Y), View);
                 var cellFrame = new CGRect(cellLocation, cell.Frame.Size);
+
+                var dismissPhotoPanGesture = new UIPanGestureRecognizer((UIPanGestureRecognizer panGesture) =>
+                {
+                    DismissFullPhotoMode(cellFrame, panGesture);
+                });
 
                 var fullImageView = new UIImageView(cell.PhotoImageView.Image)
                 {
@@ -71,45 +71,43 @@ namespace GetCoins.iOS.ViewControllers
                     UserInteractionEnabled = true
                 };
 
-                var dragGesture = new UIPanGestureRecognizer((UIPanGestureRecognizer gesture) =>
-                {
-                    fullImageView.BackgroundColor = null;
-
-                    var translation = gesture.TranslationInView(fullImageView);
-
-                    fullImageView.Center = new CGPoint
-                    {
-                        X = fullImageView.Center.X + translation.X,
-                        Y = fullImageView.Center.Y + translation.Y
-                    };
-
-                    if (gesture.State == UIGestureRecognizerState.Ended)
-                    {
-                        //NavigationController.NavigationBarHidden = false;
-                        TabBarController.TabBar.Hidden = false;
-
-                        UIView.Animate(.3, () =>
-                        {
-                            fullImageView.Frame = cellFrame;
-                            TabBarController.TabBar.Hidden = true;
-                        }, gesture.View.RemoveFromSuperview);
-                    }
-
-                    gesture.SetTranslation(new CGPoint(0, 0), fullImageView);
-                });
-
-                fullImageView.AddGestureRecognizer(dragGesture);
-
+                fullImageView.AddGestureRecognizer(dismissPhotoPanGesture);
                 View.AddSubview(fullImageView);
 
                 //NavigationController.NavigationBarHidden = true;
 
+                // Show full image
                 UIView.Animate(.3, () =>
                 {
                     fullImageView.Frame = UIScreen.MainScreen.Bounds;
                     TabBarController.TabBar.Hidden = true;
                 });
             }
+        }
+
+        void DismissFullPhotoMode(CGRect cellFrame, UIPanGestureRecognizer panGesture)
+        {
+            UIView.Animate(0.2, () => { panGesture.View.BackgroundColor = null; });
+
+            var translation = panGesture.TranslationInView(panGesture.View);
+
+            panGesture.View.Center = new CGPoint
+            {
+                X = panGesture.View.Center.X + translation.X,
+                Y = panGesture.View.Center.Y + translation.Y
+            };
+
+            if (panGesture.State == UIGestureRecognizerState.Ended)
+            {
+                TabBarController.TabBar.Hidden = false;
+
+                UIView.Animate(.3, () =>
+                {
+                    panGesture.View.Frame = cellFrame;
+                }, panGesture.View.RemoveFromSuperview);
+            }
+
+            panGesture.SetTranslation(new CGPoint(0, 0), panGesture.View);
         }
 
         public override void DidReceiveMemoryWarning()
@@ -153,9 +151,6 @@ namespace GetCoins.iOS.ViewControllers
                 InvokeOnMainThread(() =>
                 {
                     cell.PhotoImageView.Image = image;
-
-                    //var isVisible = collectionView.IndexPathsForVisibleItems
-                    //                              .Contains(indexPath);
                 });
             });
 
