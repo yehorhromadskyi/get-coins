@@ -76,13 +76,17 @@ namespace GetCoins.iOS.ViewControllers
 
                 //NavigationController.NavigationBarHidden = true;
 
-                // Show full image
-                UIView.Animate(.3, () =>
-                {
-                    fullImageView.Frame = UIScreen.MainScreen.Bounds;
-                    TabBarController.TabBar.Hidden = true;
-                });
+                ShowFullImage(fullImageView);
             }
+        }
+
+        void ShowFullImage(UIImageView imageView)
+        {
+            UIView.Animate(.3, () =>
+            {
+                imageView.Frame = UIScreen.MainScreen.Bounds;
+                TabBarController.TabBar.Hidden = true;
+            });
         }
 
         void DismissFullPhotoMode(CGRect cellFrame, UIPanGestureRecognizer panGesture)
