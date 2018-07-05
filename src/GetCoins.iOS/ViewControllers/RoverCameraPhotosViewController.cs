@@ -61,35 +61,55 @@ namespace GetCoins.iOS.ViewControllers
                 var photo = _photosSource.Photos[indexPath.Row];
 
                 var cellLocation = photosCollectionView.ConvertPointToView(new CGPoint(cell.Frame.X, cell.Frame.Y), View);
+                var cellFrame = new CGRect(cellLocation, cell.Frame.Size);
 
                 var fullImageView = new UIImageView(cell.PhotoImageView.Image)
                 {
-                    Frame = new CGRect(cellLocation, cell.Frame.Size),
+                    Frame = cellFrame,
                     BackgroundColor = UIColor.Black,
                     ContentMode = UIViewContentMode.ScaleAspectFit,
                     UserInteractionEnabled = true
                 };
 
-                var dismissGesture = new UITapGestureRecognizer(DismissFullImage);
-                fullImageView.AddGestureRecognizer(dismissGesture);
+                var dragGesture = new UIPanGestureRecognizer((UIPanGestureRecognizer gesture) =>
+                {
+                    fullImageView.BackgroundColor = null;
+
+                    var translation = gesture.TranslationInView(fullImageView);
+
+                    fullImageView.Center = new CGPoint
+                    {
+                        X = fullImageView.Center.X + translation.X,
+                        Y = fullImageView.Center.Y + translation.Y
+                    };
+
+                    if (gesture.State == UIGestureRecognizerState.Ended)
+                    {
+                        //NavigationController.NavigationBarHidden = false;
+                        TabBarController.TabBar.Hidden = false;
+
+                        UIView.Animate(.3, () =>
+                        {
+                            fullImageView.Frame = cellFrame;
+                            TabBarController.TabBar.Hidden = true;
+                        }, gesture.View.RemoveFromSuperview);
+                    }
+
+                    gesture.SetTranslation(new CGPoint(0, 0), fullImageView);
+                });
+
+                fullImageView.AddGestureRecognizer(dragGesture);
 
                 View.AddSubview(fullImageView);
 
                 //NavigationController.NavigationBarHidden = true;
 
-                UIView.Animate(0.2, () =>
+                UIView.Animate(.3, () =>
                 {
                     fullImageView.Frame = UIScreen.MainScreen.Bounds;
                     TabBarController.TabBar.Hidden = true;
                 });
             }
-        }
-
-        private void DismissFullImage(UITapGestureRecognizer recognizer)
-        {
-            //NavigationController.NavigationBarHidden = false;
-            TabBarController.TabBar.Hidden = false;
-            recognizer.View.RemoveFromSuperview();
         }
 
         public override void DidReceiveMemoryWarning()
