@@ -18,11 +18,20 @@ namespace GetCoins.iOS.ViewControllers
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView launchesTableView { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIActivityIndicatorView spinner { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (launchesTableView != null) {
                 launchesTableView.Dispose ();
                 launchesTableView = null;
+            }
+
+            if (spinner != null) {
+                spinner.Dispose ();
+                spinner = null;
             }
         }
     }

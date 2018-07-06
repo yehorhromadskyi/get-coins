@@ -23,6 +23,8 @@ namespace GetCoins.iOS.ViewControllers
         {
             base.ViewDidLoad();
 
+            spinner.StartAnimating();
+
             var apiService = new LaunchLibraryApiService(HttpService.Client);
 
             var launches = await apiService.GetLaunchesAsync();
@@ -31,6 +33,8 @@ namespace GetCoins.iOS.ViewControllers
 
             launchesTableView.Source = new LaunchesDataSource(launches);
             launchesTableView.ReloadData();
+
+            spinner.StopAnimating();
         }
 
         public override void DidReceiveMemoryWarning()

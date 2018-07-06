@@ -31,6 +31,8 @@ namespace GetCoins.iOS.ViewControllers
         {
             base.ViewDidLoad();
 
+            spinner.StartAnimating();
+
             var apiService = new NasaApiService(HttpService.Client);
 
             var rovers = await apiService.GetRoversAsync();
@@ -39,6 +41,8 @@ namespace GetCoins.iOS.ViewControllers
 
             roversTableView.Source = _roversTableSource;
             roversTableView.ReloadData();
+
+            spinner.StopAnimating();
         }
 
         //[Action("UnwindToRoversViewController:")]
