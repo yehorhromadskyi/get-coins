@@ -7,22 +7,21 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
-namespace GetCoins.iOS.ViewControllers
+namespace GetCoins.iOS.Cells
 {
-    [Register ("LaunchesViewController")]
-    partial class LaunchesViewController
+    [Register ("LaunchCell")]
+    partial class LaunchCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView launchesTableView { get; set; }
+        UIKit.UILabel label { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (launchesTableView != null) {
-                launchesTableView.Dispose ();
-                launchesTableView = null;
+            if (label != null) {
+                label.Dispose ();
+                label = null;
             }
         }
     }

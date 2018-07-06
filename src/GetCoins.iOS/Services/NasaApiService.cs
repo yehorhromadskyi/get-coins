@@ -2,21 +2,29 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace GetCoins.iOS.Services
 {
     public class NasaApiService
     {
-        static readonly string baseUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers";
+        static readonly string BaseUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers";
+
+        readonly HttpClient _httpClient;
+
+        public NasaApiService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
 
         public async Task<List<Rover>> GetRoversAsync()
         {
-            var getRovers = string.Format("{0}?api_key={1}", baseUrl, AppSettings.ApiKey);
+            var getRovers = string.Format("{0}?api_key={1}", BaseUrl, AppSettings.ApiKey);
 
             var rovers = new List<Rover>();
 
-            using (var stream = await HttpService.Client.GetStreamAsync(getRovers))
+            using (var stream = await _httpClient.GetStreamAsync(getRovers))
             using (var streamReader = new StreamReader(stream))
             using (var reader = new JsonTextReader(streamReader))
             {
@@ -33,11 +41,11 @@ namespace GetCoins.iOS.Services
         {
             var getPhotos = string.Format(
                 "{0}/{1}/photos?sol=1000&camera={2}&page={3}&api_key={4}", 
-                baseUrl, rover, camera, page, AppSettings.ApiKey);
+                BaseUrl, rover, camera, page, AppSettings.ApiKey);
 
             var photos = new List<Photo>();
 
-            using (var stream = await HttpService.Client.GetStreamAsync(getPhotos))
+            using (var stream = await _httpClient.GetStreamAsync(getPhotos))
             using (var streamReader = new StreamReader(stream))
             using (var reader = new JsonTextReader(streamReader))
             {

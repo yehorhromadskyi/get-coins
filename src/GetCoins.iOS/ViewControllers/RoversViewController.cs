@@ -31,7 +31,7 @@ namespace GetCoins.iOS.ViewControllers
         {
             base.ViewDidLoad();
 
-            var apiService = new NasaApiService();
+            var apiService = new NasaApiService(HttpService.Client);
 
             var rovers = await apiService.GetRoversAsync();
 

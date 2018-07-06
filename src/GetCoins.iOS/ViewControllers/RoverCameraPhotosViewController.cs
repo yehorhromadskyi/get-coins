@@ -34,7 +34,7 @@ namespace GetCoins.iOS.ViewControllers
 
             photosCollectionView.RegisterNibForCell(PhotoCell.Nib, PhotoCell.Key);
 
-            var apiService = new NasaApiService();
+            var apiService = new NasaApiService(HttpService.Client);
 
             var photos = await apiService.GetPhotosAsync(_rover, _camera);
 

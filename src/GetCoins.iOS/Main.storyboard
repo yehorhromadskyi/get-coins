@@ -68,6 +68,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Launches" id="frU-dn-DZR"/>
+                    <connections>
+                        <outlet property="launchesTableView" destination="5mc-X9-ZWl" id="name-outlet-5mc-X9-ZWl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="405" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

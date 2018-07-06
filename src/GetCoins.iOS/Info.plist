@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>GetCoins</string>
+	<string>Space program</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.SpaceProgram</string>
 	<key>CFBundleShortVersionString</key>
@@ -44,6 +44,6 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleName</key>
-	<string>Space program</string>
+	<string>SpaceProgram</string>
 </dict>
 </plist>
