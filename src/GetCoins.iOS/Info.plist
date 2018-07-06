@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>GetCoins</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.GetCoins</string>
+	<string>com.companyname.SpaceProgram</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -43,5 +43,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleName</key>
+	<string>Space program</string>
 </dict>
 </plist>

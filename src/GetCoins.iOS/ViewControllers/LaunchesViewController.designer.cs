@@ -9,10 +9,10 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace GetCoins.iOS
+namespace GetCoins.iOS.ViewControllers
 {
-    [Register ("ViewController")]
-    partial class ViewController
+    [Register ("LaunchesViewController")]
+    partial class LaunchesViewController
     {
         void ReleaseDesignerOutlets ()
         {

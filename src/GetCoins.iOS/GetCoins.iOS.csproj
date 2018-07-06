@@ -136,15 +136,21 @@
     <ImageAsset Include="Assets.xcassets\Rover.imageset\rover@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Launch.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Launch.imageset\launch.png" />
+    <ImageAsset Include="Assets.xcassets\Launch.imageset\launch%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Launch.imageset\launch%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Assets.xcassets\Launch.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Cells\PhotoCell.xib" />
+    <InterfaceDefinition Include="Resources\ViewControllers\LaunchesViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -160,10 +166,6 @@
     <Compile Include="Models\RoversResponse.cs" />
     <Compile Include="Services\HttpService.cs" />
     <Compile Include="Services\NasaApiService.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\RoversViewController.cs" />
     <Compile Include="ViewControllers\RoverDetailsViewController.cs" />
     <Compile Include="ViewControllers\RoverDetailsViewController.designer.cs">
@@ -183,6 +185,10 @@
       <DependentUpon>PhotoCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ImageExtensions.cs" />
+    <Compile Include="ViewControllers\LaunchesViewController.cs" />
+    <Compile Include="ViewControllers\LaunchesViewController.designer.cs">
+      <DependentUpon>LaunchesViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
