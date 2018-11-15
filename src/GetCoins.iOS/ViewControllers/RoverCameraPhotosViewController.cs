@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using CoreGraphics;
 using Foundation;
@@ -18,6 +17,7 @@ namespace GetCoins.iOS.ViewControllers
         string _camera;
 
         PhotosDataSource _photosSource;
+        private UITapGestureRecognizer _photoTappedGesture;
 
         public RoverCameraPhotosViewController(IntPtr handle)
             : base(handle)
@@ -28,9 +28,9 @@ namespace GetCoins.iOS.ViewControllers
         {
         }
 
-        public override async void ViewDidLoad()
+        public override async void ViewWillAppear(bool animated)
         {
-            base.ViewDidLoad();
+            base.ViewWillAppear(animated);
 
             photosCollectionView.RegisterNibForCell(PhotoCell.Nib, PhotoCell.Key);
 
@@ -40,12 +40,20 @@ namespace GetCoins.iOS.ViewControllers
 
             _photosSource = new PhotosDataSource(photos);
 
-            photosCollectionView.AddGestureRecognizer(new UITapGestureRecognizer(PhotosCollectionTapped));
+            _photoTappedGesture = new UITapGestureRecognizer(PhotosCollectionTapped);
+            photosCollectionView.AddGestureRecognizer(_photoTappedGesture);
 
             photosCollectionView.Delegate = new PhotosCollectionDelegateFlowLayout();
             photosCollectionView.DataSource = _photosSource;
 
             photosCollectionView.ReloadData();
+        }
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+
+            photosCollectionView.RemoveGestureRecognizer(_photoTappedGesture);
         }
 
         void PhotosCollectionTapped(UITapGestureRecognizer tapGesture)
@@ -59,11 +67,6 @@ namespace GetCoins.iOS.ViewControllers
                 var cellLocation = photosCollectionView.ConvertPointToView(new CGPoint(cell.Frame.X, cell.Frame.Y), View);
                 var cellFrame = new CGRect(cellLocation, cell.Frame.Size);
 
-                var dismissPhotoPanGesture = new UIPanGestureRecognizer((UIPanGestureRecognizer panGesture) =>
-                {
-                    DismissFullPhotoMode(cellFrame, panGesture);
-                });
-
                 var fullImageView = new UIImageView(cell.PhotoImageView.Image)
                 {
                     Frame = cellFrame,
@@ -72,10 +75,16 @@ namespace GetCoins.iOS.ViewControllers
                     UserInteractionEnabled = true
                 };
 
+                var dismissPhotoPanGesture = new UIPanGestureRecognizer((UIPanGestureRecognizer panGesture) =>
+                {
+                    DismissFullPhotoMode(cellFrame, panGesture);
+                    NavigationController.NavigationBar.Layer.ZPosition = 0;
+                });
+
                 fullImageView.AddGestureRecognizer(dismissPhotoPanGesture);
                 View.AddSubview(fullImageView);
 
-                //NavigationController.NavigationBarHidden = true;
+                NavigationController.NavigationBar.Layer.ZPosition = -1;
 
                 ShowFullImage(fullImageView);
             }
@@ -113,12 +122,6 @@ namespace GetCoins.iOS.ViewControllers
             }
 
             panGesture.SetTranslation(new CGPoint(0, 0), panGesture.View);
-        }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
         }
 
         internal void SetNavigationParameters(string rover, string camera)

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Drawing;
-
-using CoreFoundation;
-using UIKit;
-using Foundation;
 using System.Collections.Generic;
+using Foundation;
 using GetCoins.iOS.Models;
 using GetCoins.iOS.Services;
+using UIKit;
 
 namespace GetCoins.iOS.ViewControllers
 {
@@ -17,14 +14,6 @@ namespace GetCoins.iOS.ViewControllers
         public RoversViewController(IntPtr handle)
             : base (handle)
         {
-        }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-
-            // Release any cached data, images, etc that aren't in use.
         }
 
         public override async void ViewDidLoad()
@@ -67,19 +56,17 @@ namespace GetCoins.iOS.ViewControllers
 
     public class RoversTableSource : UITableViewSource
     {
-        readonly List<Rover> _rovers = new List<Rover>();
-
-        public List<Rover> Rovers => _rovers;
+        public List<Rover> Rovers { get; } = new List<Rover>();
 
         public RoversTableSource(List<Rover> rovers)
         {
-            _rovers = rovers;
+            Rovers = rovers;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
 			var cell = tableView.DequeueReusableCell("RoverCell");
-            var rover = _rovers[indexPath.Row];
+            var rover = Rovers[indexPath.Row];
 
             if (cell == null)
             {
@@ -92,6 +79,7 @@ namespace GetCoins.iOS.ViewControllers
 			return cell;
         }
 
-        public override nint RowsInSection(UITableView tableview, nint section) => _rovers.Count;
+        public override nint RowsInSection(
+            UITableView tableview, nint section) => Rovers.Count;
     }
 }

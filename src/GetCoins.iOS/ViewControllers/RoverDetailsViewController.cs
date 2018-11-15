@@ -31,12 +31,6 @@ namespace GetCoins.iOS.ViewControllers
             camerasTableView.Source = _camerasTableSource;
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
-        }
-
         public void SetNavigationParameters(string roverName, List<Camera> cams)
         {
             _roverName = roverName;
@@ -65,19 +59,17 @@ namespace GetCoins.iOS.ViewControllers
 
     public class CamerasTableSource : UITableViewSource
     {
-        readonly List<Camera> _cams = new List<Camera>();
-
-        public List<Camera> Cams => _cams;
+        public List<Camera> Cams { get; } = new List<Camera>();
 
         public CamerasTableSource(List<Camera> cams)
         {
-            _cams = cams;
+            Cams = cams;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             var cell = tableView.DequeueReusableCell("CameraCell");
-            var camera = _cams[indexPath.Row];
+            var camera = Cams[indexPath.Row];
 
             if (cell == null)
             {
@@ -90,6 +82,7 @@ namespace GetCoins.iOS.ViewControllers
             return cell;
         }
 
-        public override nint RowsInSection(UITableView tableview, nint section) => _cams.Count;
+        public override nint RowsInSection(
+            UITableView tableview, nint section) => Cams.Count;
     }
 }

@@ -36,23 +36,15 @@ namespace GetCoins.iOS.ViewControllers
 
             spinner.StopAnimating();
         }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
-        }
     }
 
     public class LaunchesDataSource : UITableViewSource
     {
-        readonly List<Launch> _launches;
-
-        public List<Launch> Launches => _launches;
+        public List<Launch> Launches { get; }
 
         public LaunchesDataSource(List<Launch> launches)
         {
-            _launches = launches;
+            Launches = launches;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
@@ -66,7 +58,8 @@ namespace GetCoins.iOS.ViewControllers
             return cell;
         }
 
-        public override nint RowsInSection(UITableView tableview, nint section) => _launches.Count;
+        public override nint RowsInSection(
+            UITableView tableview, nint section) => Launches.Count;
     }
 }
 
