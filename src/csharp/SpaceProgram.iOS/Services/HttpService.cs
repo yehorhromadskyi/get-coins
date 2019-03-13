@@ -7,11 +7,7 @@ namespace SpaceProgram.iOS.Services
     public sealed class HttpService
     {
         private static readonly Lazy<HttpClient> httpClient =
-            new Lazy<HttpClient>(() => new HttpClient(new HttpClientHandler()
-            {
-                Proxy = new WebProxy("http://127.0.0.1:5865"),
-                UseProxy = true
-            }));
+            new Lazy<HttpClient>(() => new HttpClient());
 
         public static HttpClient Client => httpClient.Value;
 
