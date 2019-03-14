@@ -14,6 +14,7 @@
 		3317C8C8223901A300FA268F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3317C8C6223901A300FA268F /* LaunchScreen.storyboard */; };
 		3317C8D022393C0800FA268F /* RoversViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317C8CF22393C0800FA268F /* RoversViewController.swift */; };
 		3317C8D322394BFD00FA268F /* Rover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317C8D222394BFD00FA268F /* Rover.swift */; };
+		3317C8D6223A67AB00FA268F /* SolsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317C8D5223A67AB00FA268F /* SolsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3317C8C9223901A300FA268F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3317C8CF22393C0800FA268F /* RoversViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoversViewController.swift; sourceTree = "<group>"; };
 		3317C8D222394BFD00FA268F /* Rover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rover.swift; sourceTree = "<group>"; };
+		3317C8D5223A67AB00FA268F /* SolsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		3317C8BA223901A300FA268F /* SpaceProgram */ = {
 			isa = PBXGroup;
 			children = (
+				3317C8D4223A678D00FA268F /* Sols */,
 				3317C8D12239427600FA268F /* Rovers */,
 				3317C8BB223901A300FA268F /* AppDelegate.swift */,
 				3317C8BF223901A300FA268F /* LaunchesViewController.swift */,
@@ -76,6 +79,14 @@
 				3317C8D222394BFD00FA268F /* Rover.swift */,
 			);
 			path = Rovers;
+			sourceTree = "<group>";
+		};
+		3317C8D4223A678D00FA268F /* Sols */ = {
+			isa = PBXGroup;
+			children = (
+				3317C8D5223A67AB00FA268F /* SolsTableViewController.swift */,
+			);
+			path = Sols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3317C8D6223A67AB00FA268F /* SolsTableViewController.swift in Sources */,
 				3317C8D322394BFD00FA268F /* Rover.swift in Sources */,
 				3317C8C0223901A300FA268F /* LaunchesViewController.swift in Sources */,
 				3317C8D022393C0800FA268F /* RoversViewController.swift in Sources */,
