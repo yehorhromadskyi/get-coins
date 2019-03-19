@@ -77,7 +77,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Hgi-ff-xmz" kind="show" id="1EB-fX-I4A"/>
+                                    <segue destination="JPG-Lq-TdW" kind="show" id="Ja8-jD-b5k"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -92,42 +92,54 @@
             </objects>
             <point key="canvasLocation" x="1688.8" y="-302.6986506746627"/>
         </scene>
-        <!--Sols-->
-        <scene sceneID="xFa-Tr-p0E">
+        <!--Photos View Controller-->
+        <scene sceneID="aUw-pP-Qjq">
             <objects>
-                <tableViewController title="Sols" id="Hgi-ff-xmz" customClass="SolsTableViewController" customModule="SpaceProgram" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sv1-ta-fcg">
+                <collectionViewController id="JPG-Lq-TdW" customClass="PhotosViewController" customModule="SpaceProgram" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="y5T-ay-Zcc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SolCell" textLabel="Bys-4Z-9Pi" style="IBUITableViewCellStyleDefault" id="N8Q-gA-aAm">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N8Q-gA-aAm" id="YLS-Cv-ajN">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9u3-hw-Bia">
+                            <size key="itemSize" width="120" height="120"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="dtf-tp-lQg" customClass="PhotoViewCell" customModule="SpaceProgram" customModuleProvider="target">
+                                <rect key="frame" x="8" y="8" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bys-4Z-9Pi">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oec-bq-KdK">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <color key="backgroundColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
+                                        </imageView>
                                     </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="Oec-bq-KdK" firstAttribute="height" secondItem="dtf-tp-lQg" secondAttribute="height" id="BPT-EU-ISt"/>
+                                    <constraint firstItem="Oec-bq-KdK" firstAttribute="centerY" secondItem="dtf-tp-lQg" secondAttribute="centerY" id="G9Y-6b-eNL"/>
+                                    <constraint firstItem="Oec-bq-KdK" firstAttribute="width" secondItem="dtf-tp-lQg" secondAttribute="width" id="Kxx-C3-BYI"/>
+                                    <constraint firstItem="Oec-bq-KdK" firstAttribute="centerX" secondItem="dtf-tp-lQg" secondAttribute="centerX" id="qqR-gW-cXg"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="Oec-bq-KdK" id="8YW-JW-WZe"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
                         <connections>
-                            <outlet property="dataSource" destination="Hgi-ff-xmz" id="r7O-PD-ekV"/>
-                            <outlet property="delegate" destination="Hgi-ff-xmz" id="FbI-Tu-n8F"/>
+                            <outlet property="dataSource" destination="JPG-Lq-TdW" id="PK7-AW-wsZ"/>
+                            <outlet property="delegate" destination="JPG-Lq-TdW" id="Ube-42-RBf"/>
                         </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GaQ-li-SRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cC6-aK-euy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2590" y="-303"/>
+            <point key="canvasLocation" x="2552.8000000000002" y="-304.4977511244378"/>
         </scene>
         <!--Rovers-->
         <scene sceneID="fuq-qA-0sS">
