@@ -10,10 +10,13 @@ import UIKit
 
 class SolsTableViewController: UITableViewController {
 
+    var rover: Rover?
     var sols = [Int(1000), Int(999), Int(998)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = rover?.name
     }
 }
 

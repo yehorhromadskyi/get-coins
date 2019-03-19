@@ -11,4 +11,6 @@ import Foundation
 public struct Rover : Decodable {
     public let name: String
     public let status: String
+    
+    public let cameras: [Camera]
 }

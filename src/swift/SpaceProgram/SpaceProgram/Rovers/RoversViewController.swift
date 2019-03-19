@@ -47,7 +47,8 @@ class RoversViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        segue.destination.title = rovers[tableView.indexPathForSelectedRow?.row ?? 0].name
+        let destinationController = segue.destination as! SolsTableViewController
+        destinationController.rover = rovers[tableView.indexPathForSelectedRow?.row ?? 0]
     }
 }
 
