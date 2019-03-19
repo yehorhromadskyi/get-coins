@@ -15,6 +15,7 @@
 		3317C8D022393C0800FA268F /* RoversViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317C8CF22393C0800FA268F /* RoversViewController.swift */; };
 		3317C8D322394BFD00FA268F /* Rover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317C8D222394BFD00FA268F /* Rover.swift */; };
 		3317C8D6223A67AB00FA268F /* SolsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317C8D5223A67AB00FA268F /* SolsTableViewController.swift */; };
+		33D035802240F1F5005C09A4 /* RoversResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D0357F2240F1F5005C09A4 /* RoversResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3317C8CF22393C0800FA268F /* RoversViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoversViewController.swift; sourceTree = "<group>"; };
 		3317C8D222394BFD00FA268F /* Rover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rover.swift; sourceTree = "<group>"; };
 		3317C8D5223A67AB00FA268F /* SolsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolsTableViewController.swift; sourceTree = "<group>"; };
+		33D0357F2240F1F5005C09A4 /* RoversResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoversResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				3317C8CF22393C0800FA268F /* RoversViewController.swift */,
 				3317C8D222394BFD00FA268F /* Rover.swift */,
+				33D0357F2240F1F5005C09A4 /* RoversResponse.swift */,
 			);
 			path = Rovers;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				3317C8C0223901A300FA268F /* LaunchesViewController.swift in Sources */,
 				3317C8D022393C0800FA268F /* RoversViewController.swift in Sources */,
 				3317C8BC223901A300FA268F /* AppDelegate.swift in Sources */,
+				33D035802240F1F5005C09A4 /* RoversResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

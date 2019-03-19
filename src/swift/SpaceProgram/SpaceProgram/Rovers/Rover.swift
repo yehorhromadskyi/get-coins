@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Rover {
-    var name: String?
-    var active: Bool
+public struct Rover : Decodable {
+    public let name: String
+    public let status: String
 }

@@ -10,14 +10,45 @@ import UIKit
 
 class RoversViewController: UITableViewController {
     
-    var rovers = [Rover(name: "Opportunity", active: true),
-                  Rover(name: "Curiosity", active: true),
-                  Rover(name: "Fake", active: false)]
+    var rovers = [Rover]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var urlSession = URLSession(configuration: .default)
+        var dataTask: URLSessionDataTask?
+        
+        var urlComponents = URLComponents(string: "https://api.nasa.gov/mars-photos/api/v1/rovers")
+        urlComponents?.queryItems = [URLQueryItem(name: "api_key", value: "API_KEY_GOES_HERE")]
+        
+        guard let url = urlComponents?.url else { return }
+        
+        dataTask = urlSession.dataTask(with: url) { data, response, error in
+            defer { dataTask = nil }
+            if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
+                do {
+                    let decoder = JSONDecoder()
+                    self.rovers = try decoder.decode(RoversResponse.self, from: data).rovers
+                    print(self.rovers)
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } catch let error {
+                    print(error)
+                }
+            }
+            else if let error = error {
+                print(error)
+            }
         }
+        
+        dataTask?.resume()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        segue.destination.title = rovers[tableView.indexPathForSelectedRow?.row ?? 0].name
+    }
 }
 
 extension RoversViewController {
@@ -30,7 +61,7 @@ extension RoversViewController {
         
         let rover = rovers[indexPath.row]
         cell.textLabel?.text = rover.name
-        cell.detailTextLabel?.text = rover.active ? "Active" : "Not active"
+        cell.detailTextLabel?.text = rover.status
         return cell;
     }
 }
