@@ -15,9 +15,6 @@ class PhotosViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         title = rover?.name
     }
 
@@ -35,9 +32,25 @@ class PhotosViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return self.rover != nil ? self.rover!.cameras.count : 0
     }
 
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: "PhotosCollectionHeader",
+                for: indexPath) as? PhotosCollectionViewHeader
+            
+            headerView?.title.text = rover?.cameras[indexPath.section].full_name
+            
+            return headerView!
+            
+        default:
+            assert(false, "Invalid element type")
+        }
+    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items

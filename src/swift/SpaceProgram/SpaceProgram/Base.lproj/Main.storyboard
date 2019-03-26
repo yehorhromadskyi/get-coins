@@ -102,13 +102,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9u3-hw-Bia">
                             <size key="itemSize" width="120" height="120"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="dtf-tp-lQg" customClass="PhotoViewCell" customModule="SpaceProgram" customModuleProvider="target">
-                                <rect key="frame" x="8" y="8" width="120" height="120"/>
+                                <rect key="frame" x="8" y="58" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
@@ -131,6 +131,25 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="PhotosCollectionHeader" id="Tis-tM-YYB" customClass="PhotosCollectionViewHeader" customModule="SpaceProgram" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hz0-WC-YtQ">
+                                    <rect key="frame" x="8" y="14.5" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Hz0-WC-YtQ" firstAttribute="centerY" secondItem="Tis-tM-YYB" secondAttribute="centerY" id="H5f-X9-hVB"/>
+                                <constraint firstItem="Hz0-WC-YtQ" firstAttribute="leading" secondItem="Tis-tM-YYB" secondAttribute="leadingMargin" id="l9U-fZ-dqy"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="title" destination="Hz0-WC-YtQ" id="7S6-lf-bqc"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="JPG-Lq-TdW" id="PK7-AW-wsZ"/>
                             <outlet property="delegate" destination="JPG-Lq-TdW" id="Ube-42-RBf"/>

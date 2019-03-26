@@ -19,7 +19,7 @@ class RoversViewController: UITableViewController {
         var dataTask: URLSessionDataTask?
         
         var urlComponents = URLComponents(string: "https://api.nasa.gov/mars-photos/api/v1/rovers")
-        urlComponents?.queryItems = [URLQueryItem(name: "api_key", value: "API_KEY_GOES_HERE")]
+        urlComponents?.queryItems = [URLQueryItem(name: "api_key", value: AppSettings.apiSecret)]
         
         guard let url = urlComponents?.url else { return }
         
