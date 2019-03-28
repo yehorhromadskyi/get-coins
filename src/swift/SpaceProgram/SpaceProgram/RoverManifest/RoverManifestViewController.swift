@@ -1,24 +1,29 @@
 //
-//  RoversViewController.swift
+//  RoverManifestViewController.swift
 //  SpaceProgram
 //
-//  Created by Yehor Hromadskyi on 13.03.19.
+//  Created by Yehor Hromadskyi on 27.03.19.
 //  Copyright © 2019 Yehor Hromadskyi. All rights reserved.
 //
 
 import UIKit
 
-class RoversViewController: UITableViewController {
+class RoverManifestViewController: UITableViewController {
     
-    var rovers = [Rover]()
+    @IBOutlet weak var launchDateLabel: UILabel!
+    
+    var rover: Rover?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = rover?.name
         
         var urlSession = URLSession(configuration: .default)
         var dataTask: URLSessionDataTask?
         
-        var urlComponents = URLComponents(string: "https://api.nasa.gov/mars-photos/api/v1/rovers")
+        var stringUrl = "https://api.nasa.gov/mars-photos/api/v1/manifests/" + title!
+        var urlComponents = URLComponents(string: stringUrl)
         urlComponents?.queryItems = [URLQueryItem(name: "api_key", value: AppSettings.apiSecret)]
         
         guard let url = urlComponents?.url else { return }
@@ -28,10 +33,10 @@ class RoversViewController: UITableViewController {
             if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
                 do {
                     let decoder = JSONDecoder()
-                    self.rovers = try decoder.decode(RoversResponse.self, from: data).rovers
+                    let date = try decoder.decode(RoverManifestResponse.self, from: data).photo_manifest.launch_date
                     
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        self.launchDateLabel.text = date
                     }
                 } catch let error {
                     print(error)
@@ -45,23 +50,15 @@ class RoversViewController: UITableViewController {
         dataTask?.resume()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationController = segue.destination as! RoverManifestViewController
-        destinationController.rover = rovers[tableView.indexPathForSelectedRow?.row ?? 0]
-    }
-}
 
-extension RoversViewController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rovers.count
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RoverCell", for: indexPath)
-        
-        let rover = rovers[indexPath.row]
-        cell.textLabel?.text = rover.name
-        cell.detailTextLabel?.text = rover.status
-        return cell;
-    }
+    */
+
 }
