@@ -11,6 +11,8 @@ import UIKit
 class RoverManifestViewController: UITableViewController {
     
     @IBOutlet weak var launchDateLabel: UILabel!
+    @IBOutlet weak var landingDateLabel: UILabel!
+    @IBOutlet weak var flightTimeLabel: UILabel!
     
     var rover: Rover?
     
@@ -33,10 +35,19 @@ class RoverManifestViewController: UITableViewController {
             if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
                 do {
                     let decoder = JSONDecoder()
-                    let date = try decoder.decode(RoverManifestResponse.self, from: data).photo_manifest.launch_date
+                    let decodedData = try decoder.decode(RoverManifestResponse.self, from: data)
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-mm-dd"
+                    let launchDateString = decodedData.photo_manifest.launch_date
+                    let landingDateString = decodedData.photo_manifest.landing_date
+                    let launchDate = dateFormatter.date(from: launchDateString)!
+                    let landingDate = dateFormatter.date(from: landingDateString)!
+                    let flightTime = Calendar.current.dateComponents([.day], from: launchDate, to: landingDate).day
                     
                     DispatchQueue.main.async {
-                        self.launchDateLabel.text = date
+                        self.launchDateLabel.text = launchDateString
+                        self.landingDateLabel.text = landingDateString
+                        self.flightTimeLabel.text = "\(flightTime ?? 0) day(s)"
                     }
                 } catch let error {
                     print(error)

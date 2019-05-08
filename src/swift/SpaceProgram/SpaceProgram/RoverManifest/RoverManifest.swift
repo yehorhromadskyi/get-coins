@@ -10,4 +10,5 @@ import Foundation
 
 public struct RoverManifest : Decodable {
     public let launch_date: String
+    public let landing_date: String
 }
